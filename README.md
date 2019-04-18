@@ -1,2 +1,2 @@
-# sf40-samples
-Samples for interfacing with the SF40.
+# Overview
+These samples are for the newer model of SF40/C (Serial number S40-14500 and beyond).
