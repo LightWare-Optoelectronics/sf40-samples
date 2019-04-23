@@ -4,7 +4,7 @@
 //-------------------------------------------------------------------------
 #pragma once
 
-#include "common.h"
+#include "../common.h"
 #include <unistd.h>
 #include <time.h>
 #include <termios.h>
