@@ -17,9 +17,14 @@ void printHexDebug(uint8_t* Data, uint32_t Size) {
 	printf("\n");
 }
 
-void exitCommandFailure() {
-	printf("No response to command, terminating sample.\n");
+void exitWithMessage(const char* Msg) {
+	printf("%s\nPress any key to Exit...\n", Msg);
+	std::cin.ignore();
 	exit(1);
+}
+
+void exitCommandFailure() {
+	exitWithMessage("No response to command, terminating sample.\n");
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------
@@ -31,13 +36,17 @@ int main(int args, char **argv)
 	
 	printf("SF40 sample\n");
 
+#ifdef __linux__
 	const char* portName = "/dev/ttyUSB0";
+#else
+	const char* portName = "\\\\.\\COM39";
+#endif
+
 	int32_t baudRate = 921600;
 
 	lwSerialPort* serial = platformCreateSerialPort();
 	if (!serial->connect(portName, baudRate)) {
-		printf("Could not establish serial connection\n");
-		return 1;
+		exitWithMessage("Could not establish serial connection\n");
 	};
 
 	// Read the product name. (Command 0: Product name)

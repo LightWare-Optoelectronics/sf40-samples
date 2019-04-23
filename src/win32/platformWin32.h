@@ -4,7 +4,7 @@
 //-------------------------------------------------------------------------
 #pragma once
 
-#include "common.h"
+#include "../common.h"
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

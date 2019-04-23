@@ -11,7 +11,7 @@
 #ifdef __linux__
 	#include "./linux/platformLinux.h"
 #else
-	#include "./linux/platformWin32.h"
+	#include "./win32/platformWin32.h"
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------------------

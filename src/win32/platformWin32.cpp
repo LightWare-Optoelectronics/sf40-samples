@@ -16,10 +16,10 @@ void platformInit() {
 double getTimeSeconds() {
 	LARGE_INTEGER counter;
 	QueryPerformanceCounter(&counter);
-	int64_t time = counter.QuadPart - platform.timeCounterStart;
-	double result = (double)time / ((double)platform.timeFrequency);
+	int64_t time = counter.QuadPart - timeCounterStart;
+	double result = (double)time / ((double)timeFrequency);
 
-	return result
+	return result;
 }
 
 int64_t platformGetMicrosecond() {

@@ -1,18 +1,5 @@
 #include "lwSerialPortWin32.h"
 
-int32_t _convertBaudRate(int32_t BitRate) {
-	switch (BitRate) {
-		case 115200: { return B115200; }
-		case 230400: { return B230400; }
-		case 460800: { return B460800; }
-		case 500000: { return B500000; }
-		case 576000: { return B576000; }
-		case 921600: { return B921600; }		
-	}
-
-	return B115200;
-}
-
 bool lwSerialPortWin32::connect(const char* Name, int BitRate) {
 	_descriptor = INVALID_HANDLE_VALUE;
 	printf("Attempt com connection: %s\n", Name);
@@ -30,7 +17,7 @@ bool lwSerialPortWin32::connect(const char* Name, int BitRate) {
 	DCB comParams = {};
 	comParams.DCBlength = sizeof(comParams);
 	GetCommState(handle, &comParams);
-	comParams.BaudRate = BuadRate;
+	comParams.BaudRate = BitRate;
 	comParams.ByteSize = 8;
 	comParams.StopBits = ONESTOPBIT;
 	comParams.Parity = NOPARITY;
@@ -62,7 +49,7 @@ bool lwSerialPortWin32::connect(const char* Name, int BitRate) {
 
 	_descriptor = handle;
 
-	std::cout << "Serial Connect: Connected to " << ComPortName << ".\n";
+	std::cout << "Serial Connect: Connected to " << Name << ".\n";
 
 	return true;
 }
